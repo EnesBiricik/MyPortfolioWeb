@@ -1,0 +1,73 @@
+﻿@model ProjectListDto
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    var settings = ViewBag.Settings as PageSettingsListDto;
+}
+
+
+@section title {
+    @Model.Name.Substring(0, Model.Name.Length > 20 ? 20 : Model.Name.Length)... | enesbiricik.com
+}
+
+
+<div class="row">
+
+    <!--COL-LG-9 start-->
+    <div class="col-lg-9">
+        <!--Blog content start-->
+        <div>
+            <div class="row p-2">
+                <!--Posts start-->
+                <div>
+                    <div class="blogPost row pb-4 mt-5">
+                        <div class="photo col-lg-12">
+                            <img class="blogPhoto" src="~/img/gallery/@Model.CoverPhoto">
+
+                        </div>
+                        <div class="col-lg-12 p-3">
+                            <div class="row my-2">
+                                <div class="col-6">
+                                    <a target="_blank" href="@Model.LiveDemoLink" class="btnProje p-2 m-2 float-left">
+                                        <i class="fa-solid fa-paper-plane mr-2"></i>
+                                        <span>İncele</span>
+                                    </a>
+                                </div>
+                                <div class="col-6">
+                                    <a target="_blank" href="@Model.GithubLink" class="btnProje p-2 m-2 float-right">
+                                        <i class="fa-solid fa-eye mr-2"></i>
+                                        <span>Github</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <h5>
+                                <a href="#" class="postHeader ml-2">@Model.Name</a>
+                            </h5>
+                            <p class="postDesc ml-2">
+                            @Model.Description
+                            </p>
+
+                            <div class="m-0 row">
+                                <div class="d-inline-block">
+                                    <img class="profilePhoto" src="~/img/gallery/@settings.ProfilePhoto">
+                                </div>
+                                <div class="ml-2">
+                                    <h5 class="postAuthor">@settings.Name</h5>
+                                    <p>@TimeHelper.Invoke(Model.Date)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--Posts end-->
+            </div>
+        </div>
+        <!--Blog content end-->
+    </div>
+
+    <!--COL-LG-9 end-->
+    <!--Right Menu-->
+    @await Component.InvokeAsync("RightMenu")
+    <!--Right Menu-->

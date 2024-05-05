@@ -1,0 +1,61 @@
+﻿@model ProjectCreateDto
+@{
+    Layout = "../Shared/_PanelLayout.cshtml";
+}
+
+@section title
+    {
+    enesbiricikcom | Project Create
+}
+
+@section PageHeader
+    {
+    Project Create
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" asp-action="ProjectCreate" asp-controller="Dashboard" enctype="multipart/form-data">
+            <div>
+                <label>Project Name:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.Name">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.Name"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Project Cover Photo:</label>
+                <input class="form-control form-control-lg" type="file" name="CoverPhoto">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.CoverPhoto"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Description:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.Description">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.Description"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Live Demo Link:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.LiveDemoLink">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.LiveDemoLink"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Github Link:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.GithubLink">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.GithubLink"></span>
+            </div>
+            <br />
+
+
+            <div>
+                <button class="btn btn-primary" type="submit">Ekle</button>
+            </div>
+        </form>
+    </div>
+</div>

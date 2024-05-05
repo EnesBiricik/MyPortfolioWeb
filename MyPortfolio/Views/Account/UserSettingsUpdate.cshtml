@@ -1,0 +1,51 @@
+﻿@model UserUpdateModel
+@{
+    Layout = "../Shared/_PanelLayout.cshtml";
+}
+@section title
+    {
+    enesbiricikcom | User Settings
+}
+
+@section PageHeader
+{
+    User Settings
+}
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" asp-action="UserSettingsUpdate" asp-controller="Account">
+            <div>
+                <label>User Name</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.UserName" value="@Model.UserName">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.UserName"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Mail Address</label>
+                <input class="form-control form-control-lg" type="email" asp-for="@Model.Email" value="@Model.Email">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.Email"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Password</label>
+                <input class="form-control form-control-lg" type="password" asp-for="@Model.Password" value="@Model.Password">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.Password"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>New Password</label>
+                <input class="form-control form-control-lg" type="password" asp-for="@Model.NewPassword" value="@Model.NewPassword">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.NewPassword"></span>
+            </div>
+            <br />
+
+            <div>
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

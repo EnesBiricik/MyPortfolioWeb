@@ -1,0 +1,84 @@
+﻿@model PageSettingsListDto
+@{
+    Layout = "";
+}
+
+@section title
+    {
+    enesbiricikcom | Page Settings
+}
+
+
+@section PageHeader
+    {
+    Blogs
+}
+@{
+    Layout = "../Shared/_PanelLayout.cshtml";
+}
+
+
+
+@section links{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
+    <style>
+        tr, th {
+            padding: 10px;
+        }
+
+        thead {
+            color: white;
+            background-color: #4e73df;
+        }
+
+        tbody {
+            font-size: large;
+        }
+    </style>
+}
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Profile Photo</th>
+                        <th>SloganSentence</th>
+                        <th>Title Icon</th>
+                        <th>CommentAuthorProfilePhoto</th>
+                        <th>NavbarLogoImage</th>
+                        <th>FooterLogoImage</th>
+                        <th>AboutDescription</th>
+                        <th>Job</th>
+                        <th>ShortDescription</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.Name</td>
+                        <td>@Model.Email</td>
+                        <td><img style="width:5rem;" src="~/img/gallery/@Model.ProfilePhoto" /></td>
+                        <td>@Model.SloganSentence</td>
+                        <td><img style="width:5rem;" src="~/img/gallery/@Model.TitleIcon" /></td>
+                        <td><img style="width:5rem;" src="~/img/gallery/@Model.CommentAuthorProfilePhoto" /></td>
+                        <td><img style="width:5rem;" src="~/img/gallery/@Model.NavbarLogoImage" /></td>
+                        <td><img style="width:5rem;" src="~/img/gallery/@Model.FooterLogoImage" /></td>
+                        <td>@Model.AboutDescription</td>
+                        <td>@Model.Job</td>
+                        <td>@Model.ShortDescription</td>
+                        <td>
+                            <a class="btn btn-info" asp-action="PageSettingsUpdate" asp-controller="Dashboard" asp-route-id="@Model.Id">Update</a>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

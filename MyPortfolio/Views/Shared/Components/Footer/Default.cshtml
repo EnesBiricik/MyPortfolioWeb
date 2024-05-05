@@ -1,0 +1,72 @@
+﻿@model MyPortfolio.Web.FooterViewModel
+@{
+    var pageSettings = Model.PageSettings;
+    var socialMedias = Model.SocialMediaList;
+}
+
+
+<footer>
+    <!--footer Start-->
+    <div>
+        <div class="footer">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="text-center">
+                        <img src="~/img/gallery/@pageSettings.FooterLogoImage" style="border-radius: 1rem;" width="200" height="200" alt="Site Logo">
+                    </div>
+                    <div class="text-center mt-3">
+                        <p class="soscialMediaDesc pt-1 font-weight-bolder">@pageSettings.SloganSentence</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <ul class="list-unstyled">
+                        <li class="footerİtem"><a class="footer-link" href="/Home/About">Hakkımda</a></li>
+                        <li class="footerİtem"><a class="footer-link" href="/Home">Anasayfa</a></li>
+                        <li class="footerİtem"><a class="footer-link" href="/Home/Blogs">Bloglar</a></li>
+                        <li class="footerİtem"><a class="footer-link" href="/Home/Contact">İletişim</a></li>
+                        <li class="footerİtem"><a class="footer-link" href="/Home/Project">Projeler</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-center">
+
+                        @foreach (var account in socialMedias)
+                        {
+                            <div class="iconDiv p-2 m-2">
+                                <a onclick="ClickCount(@account.Id)" class="" href="@account.Link">
+                                    <img class="" src="~/img/gallery/@account.Icon" style="max-width:2rem;max-height:2rem;min-width:2rem;min-height:2rem;">
+                                </a>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--footer End-->
+
+    <div style="display:none;">
+        @Html.Raw(TempData["alerts"])
+    </div>
+
+</footer>
+
+<script>
+    function ClickCount(id) {
+        if (id > 0) {
+            fetch('/Home/SocialMediaClickCount', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(id)
+            })
+                .catch(error => {
+                    console.error(error);
+                });
+
+        }
+    }
+</script>

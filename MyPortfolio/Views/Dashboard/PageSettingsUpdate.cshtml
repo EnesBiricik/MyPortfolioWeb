@@ -1,0 +1,109 @@
+﻿@model PageSettingsUpdateDto
+@section title
+{
+    enesbiricikcom | Page Settings Update
+}
+
+@{
+    Layout = "../Shared/_PanelLayout.cshtml";
+}
+
+@section PageHeader
+    {
+    Page Settings Update
+}
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" asp-action="PageSettingsUpdate" asp-controller="Dashboard" enctype="multipart/form-data">
+            <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
+            <div>
+                <label>Settings Name:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.Name" value="@Model.Name">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.Name"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Settings Email:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.Email" value="@Model.Email">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.Email"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Settings Profile Photo:</label>
+                <img src="~/img/gallery/@Model.ProfilePhoto" style="width:1.5rem;" />
+                <input class="form-control form-control-lg" type="file" name="ProfilePhoto">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.ProfilePhoto"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Settings Slogan Sentence:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.SloganSentence" value="@Model.SloganSentence">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.SloganSentence"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Settings Comment Author Photo:</label>
+                <img src="~/img/gallery/@Model.CommentAuthorProfilePhoto" style="width:1.5rem;" />
+                <input class="form-control form-control-lg" type="file" name="CommentAuthorProfilePhoto">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.CommentAuthorProfilePhoto"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Settings Navbar Logo Image:</label>
+                <img src="~/img/gallery/@Model.NavbarLogoImage" style="width:1.5rem;" />
+                <input class="form-control form-control-lg" type="file" name="NavbarLogoImage">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.NavbarLogoImage"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Settings Footer Logo Image:</label>
+                <img src="~/img/gallery/@Model.FooterLogoImage" style="width:1.5rem;" />
+                <input class="form-control form-control-lg" type="file" name="FooterLogoImage">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.FooterLogoImage"></span>
+            </div>
+            <br />
+
+
+            <div>
+                <label>Settings About Description:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.AboutDescription" value="@Model.AboutDescription">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.AboutDescription"></span>
+            </div>
+            <br />
+
+
+            <div>
+                <label>Settings Title Icon:</label>
+                <img src="~/img/gallery/@Model.TitleIcon" style="width:1.5rem;"/>
+                <input class="form-control form-control-lg" type="file" name="TitleIcon">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.TitleIcon"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Settings Job:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.Job" value="@Model.Job">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.Job"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Settings Short Description:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.ShortDescription" value="@Model.ShortDescription">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.ShortDescription"></span>
+            </div>
+            <br />
+
+            <div>
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

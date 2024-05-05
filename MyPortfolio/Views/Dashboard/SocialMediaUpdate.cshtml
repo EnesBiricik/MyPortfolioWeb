@@ -1,0 +1,52 @@
+﻿@model SocialMediaUpdateDto
+@{
+    Layout = "../Shared/_PanelLayout.cshtml";
+}
+
+@section title
+    {
+    enesbiricikcom | Social Media Update
+}
+
+@{
+    Layout = "../Shared/_PanelLayout.cshtml";
+}
+
+@section PageHeader
+    {
+    Social Media Update
+}
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" asp-action="SocialMediaUpdate" asp-controller="Dashboard" enctype="multipart/form-data">
+            <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
+            <div>
+                <label>Account Name:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.Name" value="@Model.Name">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.Name" ></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Account Icon Photo:</label>
+                <img src="~/img/gallery/@Model.Icon" style="width:1.5rem;"/>
+                <input class="form-control form-control-lg" type="file" name="IconFile">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.Icon"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Account Link:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.Link" value="@Model.Link">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.Link"></span>
+            </div>
+            <br />
+
+
+            <div>
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

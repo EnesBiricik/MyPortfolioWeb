@@ -1,0 +1,41 @@
+﻿@model NavbarViewModel
+@{
+    var pageSettings = Model.PageSettings;
+
+
+}
+
+<div>
+    <div class="navbar navbar-expand-lg">
+        <a class="navbar-brand" id="logoHref" href="/Home/Index">
+            <img src="~/img/gallery/@pageSettings.NavbarLogoImage">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span><i class="fa-solid fa-bars" style="color: #a970ff;"></i></span>
+        </button>
+
+        <div class="collapse navbar-collapse navbarMenuOpen" id="navbarNav">
+            <ul class="navbar-nav ml-auto navbarİtems">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/Home/Index">Anasayfa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/Home/Contact">İletişim</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/Home/About">Hakkımda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/Home/Blogs">Bloglar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/Home/Categories">Kategoriler</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/Home/Project">Projeler</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>

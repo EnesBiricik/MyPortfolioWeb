@@ -1,0 +1,141 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@await RenderSectionAsync("title", true)</title>
+    <link rel="icon" type="image/x-icon" href="/img/TitleIcon.png">
+
+    <link rel="stylesheet" href="~/Front/assets/style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!--fontAwesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    @await RenderSectionAsync("links",false)
+
+
+    <!--Toast Message-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+    <title>Hello, world!</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6EP3LPFZBH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-6EP3LPFZBH');
+    </script>
+
+</head>
+
+<body class="body container">
+
+    <!--<div id="overlay">
+        <div class="loading-screen">
+            <div class="loader"></div>
+        </div>
+    </div>-->
+
+    <div id="overlay">
+        <div class="loading-screen">
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <header>
+<!--Navbar Start-->
+        @await Component.InvokeAsync("Navbar")
+<!--Navbar End-->
+    </header>
+    <main>
+
+        @RenderBody()
+    </main>
+
+
+
+    <div style="display:none;">
+        @Html.Raw(TempData["alerts"])
+    </div>
+
+
+    @await Component.InvokeAsync("Footer")
+
+    <div class="gtranslate_wrapper"></div>
+    <script>window.gtranslateSettings = { "default_language": "tr", "native_language_names": true, "detect_browser_language": true, "wrapper_selector": ".gtranslate_wrapper" }</script>
+    <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" integrity="sha512-sJa5KWq3F99QOeijUOm9O+BgDgVtzrWBBagZtjlW7F3I47NO1OaNJvbut+9KOPmjNr4Wb3blU4vQiQdi+Zk6wg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <script src="~/Front/assets/main.js"></script>
+
+
+    <!--ToastMessage Scripts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script>
+        const Infoalerts = document.querySelectorAll(".infoAlert")
+        Infoalerts.forEach((alert) => {
+            toastr.info(alert.textContent)
+        })
+        const Successalerts = document.querySelectorAll(".successAlert")
+        Successalerts.forEach((alert) => {
+            toastr.success(alert.textContent)
+        })
+        const Warningsalerts = document.querySelectorAll(".warningAlert")
+        Warningsalerts.forEach((alert) => {
+            toastr.warning(alert.textContent)
+        })
+        const Erroralerts = document.querySelectorAll(".errorAlert")
+        Erroralerts.forEach((alert) => {
+            toastr.error(alert.textContent)
+        })
+        
+    </script>
+
+    <script>
+        window.addEventListener("load", function () {
+            const visitedBefore = localStorage.getItem('visitedbefore');
+            const oneMinuteInMillis = 60000;
+            const now = new Date().getTime();
+
+            if (!visitedBefore || now - new Date(visitedBefore).getTime() >= oneMinuteInMillis) {
+                localStorage.setItem('visitedbefore', new Date(now).toISOString());
+
+                fetch('/Home/IncreaseVisitor', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: true
+                })
+                    .catch(error => {
+                    });
+
+            }
+        });
+    </script>
+
+
+    @await RenderSectionAsync("scripts",false)
+</body>
+
+</html>

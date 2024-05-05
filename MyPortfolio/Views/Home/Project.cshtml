@@ -1,0 +1,57 @@
+﻿@model List<ProjectListDto>
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+@section title {
+    Projeler | enesbiricik.com
+
+}
+<div class="row">
+
+    <!--COL-LG-9 start-->
+    <div class="col-lg-9">
+        <!--Blog content start-->
+        <div>
+            <div class="row">
+                <!--Posts start-->
+                @foreach(var project in Model)
+                {
+                    <div class="col-lg-6">
+                        <div class="blogProject row pb-4">
+                            <div class="projectPhoto">
+                                <img class="blogPhoto" src="~/img/gallery/@project.CoverPhoto">
+                            </div>
+                            <div class="p-2 my-2">
+                                <h5>
+                                    <a href="/Home/ProjectDetail/@project.Id" class="postHeader ml-2">@project.Name</a>
+                                </h5>
+                                <p class="postDesc ml-2">
+                                    @project.Description.Substring(0, project.Description.Length > 90 ? 90 : project.Description.Length)...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <!--Posts end-->
+            </div>
+
+
+            <!--MoreButton start-->
+            @*<div class="MoreButton">
+                <div class="loadMore p-2">
+                    <a class="loadMoreA" href="">Daha Fazla Göster</a>
+                </div>
+            </div>*@
+            <!--MoreButton end-->
+
+        </div>
+        <!--Blog content end-->
+
+    </div>
+
+    <!--COL-LG-9 end-->
+    <!--Right Menu-->
+    @await Component.InvokeAsync("RightMenu")
+    <!--Right Menu-->

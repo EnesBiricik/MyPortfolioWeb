@@ -1,0 +1,157 @@
+﻿@model HomeViewModel
+@{
+    var pageSettings = Model.PageSettings;
+    var blogs = Model.Blogs;
+    var projects = Model.Projects;
+}
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+@section title {
+    Anasayfa | enesbiricik.com
+}
+
+<div>
+    <div class="container hero m-auto">
+        <div class="row p-1 align-content-center justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="soscialMediaDesc">
+                    Merhaba, Ben <b class="authorName">@pageSettings.Name</b>.
+                    <br>@pageSettings.Job
+                </h1>
+                <p class="heroDesc pt-3">
+                    @pageSettings.ShortDescription
+                </p>
+                <div class="btn-group d-flex align-items-center justify-content-center">
+                    <div class="btnPrimary p-1 m-2">
+                        <a href="/Home/Contact">Benimle iletişime geç</a>
+                    </div>
+                    <div class="btnPrimary p-1 m-2">
+                        <a href="/Home/About">Hakkımda</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-3 mr-1 d-flex align-items-center justify-content-center">
+                <div class="img-box">
+                    <img class="img-hero" src="~/img/gallery/@pageSettings.ProfilePhoto">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <!--COL-LG-9 start-->
+        <div class="col-lg-9">
+            <!--Blog content start-->
+
+            <div>
+                <div class="divback">
+                    <h4 class="head">
+                        Blog Yazıları
+                    </h4>
+                </div>
+            </div>
+
+            <div>
+                <div class="row">
+                    <!--Posts start-->
+                    @foreach (var post in blogs)
+                    {
+                        <div style="width:100% !important;">
+                            <div class="blog row pb-4 mx-2">
+                                <div class="photo col-lg-4" style="max-height:16rem !important;">
+                                    <img class="blogPhoto" src="~/img/gallery/@post.CoverPhoto">
+
+                                </div>
+                                <div class="col-lg-8 p-3">
+                                    <a class="blogTag" href="/Home/Category/@post.CategoryId">
+                                        @post.Category.Name
+                                    </a>
+                                    <h5>
+                                        <a href="/Home/Post/@post.Id" class="postHeader ml-2">@post.Name</a>
+                                    </h5>
+                                    <p class="postDesc ml-2">
+                                        @post.Description.Substring(0, post.Description.Length > 50 ? 50 : post.Description.Length )...
+                                    </p>
+                                    <div class="m-0 row">
+                                        <div class="d-inline-block">
+                                            <img class="profilePhoto" src="~/img/gallery/@pageSettings.ProfilePhoto">
+                                        </div>
+                                        <div class="ml-2">
+                                            <p class="postAuthor">@pageSettings.Name</p>
+                                            <p>@TimeHelper.Invoke(post.Date)</p>
+                                        </div>
+                                        <div class="readTime">
+                                            <span class="readTimeText"><i class="fa-solid fa-clock mr-2 mb-1" style="color: #697fea;"></i>@post.ReadingTime  dk.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!--Posts end-->
+                </div>
+                <!--MoreButton start-->
+                <div class="MoreButton">
+                    <div class="loadMore p-2">
+                        <a class="loadMoreA" href="/Home/Blogs">Daha Fazla Post </a>
+                    </div>
+                </div>
+                <!--MoreButton end-->
+
+            </div>
+            <!--Blog content end-->
+            <!--Projects Start-->
+            <div>
+                <div class="divback">
+                    <h4 class="head">
+                        Projeler
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var project in projects)
+                {
+
+                    <div class="col-sm-12 col-md-12 col-lg-4">
+                        <div class="proje">
+                            <img class="photoProjects" src="~/img/gallery/@project.CoverPhoto">
+
+                            <div class="button">
+                                <a href="@project.LiveDemoLink">
+                                    <button class="Incele mr-1 p-1">
+                                        <i class="fa-solid fa-paper-plane mr-1"></i>
+                                        <span>İncele</span>
+                                    </button>
+                                </a>
+
+                                <a href="@project.GithubLink">
+                                    <button class="Github ml-1 p-1">
+                                        <i class="fa-solid fa-eye mr-1"></i>
+                                        <span class="">Kodları Gör</span>
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <a class="soscialMediaDesc mb-0 p-3 font" style="font-size: large;" href="/Home/ProjectDetail/@project.Id">
+                                    @project.Name.Substring(0, project.Name.Length > 20 ? 20 : project.Name.Length)...
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <!--Projects End-->
+
+        </div>
+
+        <!--COL-LG-9 end-->
+        <!--Right Menu-->
+        @await Component.InvokeAsync("RightMenu")
+        <!--Right Menu-->
+    </div>
+</div>

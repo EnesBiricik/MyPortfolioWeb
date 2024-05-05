@@ -1,0 +1,119 @@
+﻿@model List<SocialMediaListDto>
+@{
+    Layout = "../Shared/_PanelLayout.cshtml";
+}
+@section title
+    {
+    enesbiricikcom | Social Medias
+}
+
+@section PageHeader
+    {
+    Social Medias
+}
+
+
+@section links{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
+
+    <style>
+        tr, th {
+            padding: 10px;
+        }
+
+        thead {
+            color: white;
+            background-color: #4e73df;
+        }
+
+        tbody {
+            font-size: large;
+        }
+    </style>
+}
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Icon</th>
+                        <th>Link</th>
+                        <th>Click Count</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count > 0)
+                    {
+                        foreach (var category in Model)
+                        {
+
+                            <tr>
+                                <td>@category.Name</td>
+                                <td><img style="width:3rem;" src="~/img/gallery/@category.Icon" /></td>
+                                <td>@category.Link</td>
+                                <td>@category.ClickCount</td>
+                                <td>
+                                    <a class="btn btn-info" asp-action="SocialMediaUpdate" asp-controller="Dashboard" asp-route-id="@category.Id">Düzenle</a>
+                                    <Button type="button" class="btn btn-danger" onclick="CategoryDelete(@category.Id , this)">Sil</Button>
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <span style="display:none" class="infoAlert">You don't have a any Content !'</span>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+
+        $(document).ready(function () {
+            $('#dataTable').DataTable({
+                "order": [[0, "asc"]],
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/tr.json',
+                }
+            });
+        });
+
+        function CategoryDelete(id, element) {
+            if (confirm("Are you sure delete it?")) {
+                $.ajax({
+                    url: '/Dashboard/SocialMediaDelete',
+                    method: 'POST',
+                    data: { 'Id': id },
+                    success: function (result) {
+                        if (result == true) {
+                            element.parentElement.parentElement.remove()
+                            toastr.success("Category is Deleted")
+                        }
+                        else {
+                            toastr.error("Something went wrong ")
+                        }
+                    },
+                    error: function () {
+                        toastr.error("Something went wrong ")
+                    }
+                });
+            }
+
+
+
+        }
+    </script>
+    }

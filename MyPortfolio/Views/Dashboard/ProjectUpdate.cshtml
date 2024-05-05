@@ -1,0 +1,60 @@
+﻿@model ProjectUpdateDto
+@{
+    Layout = "../Shared/_PanelLayout.cshtml";
+}
+@section title
+    {
+    enesbiricikcom | Project Update
+}
+
+@section PageHeader
+    {
+    Project Update
+}
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" asp-action="ProjectUpdate" asp-controller="Dashboard" enctype="multipart/form-data">
+            <div>
+                <label>Project Name:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.Name" value="@Model.Name">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.Name"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Project Cover Photo:</label>
+                <img src="~/img/gallery/@Model.CoverPhoto" style="width:2rem;" />
+                <input class="form-control form-control-lg" type="file" name="CoverPhoto" value="@Model.CoverPhoto">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.CoverPhoto"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Description:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.Description" value="@Model.Description">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.Description"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Live Demo Link:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.LiveDemoLink" value="@Model.LiveDemoLink">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.LiveDemoLink"></span>
+            </div>
+            <br />
+
+            <div>
+                <label>Github Link:</label>
+                <input class="form-control form-control-lg" type="text" asp-for="@Model.GithubLink" value="@Model.GithubLink">
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.GithubLink"></span>
+            </div>
+            <br />
+
+
+            <div>
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

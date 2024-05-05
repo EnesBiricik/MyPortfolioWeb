@@ -1,0 +1,128 @@
+﻿@model List<BlogListDto>
+@{
+    Layout = "../Shared/_Layout.cshtml";
+
+    var settings = ViewBag.Settings as PageSettingsListDto;
+}
+
+@section title {
+    Bloglar | enesbiricik.com
+}
+
+
+<div class="row">
+
+    <!--COL-LG-9 start-->
+    <div class="col-lg-9">
+        <!--Blog content start-->
+        <div>
+            <div class="row" id="postsDiv">
+                <!--Posts start-->
+                @foreach (var post in Model)
+                {
+
+                    <div style="width:100% !important;">
+                        <div class="blog row pb-4 mx-2">
+                            <div class="photo col-lg-4" style="max-height:16rem !important;">
+                                <img class="blogPhoto" src="~/img/gallery/@post.CoverPhoto">
+
+                            </div>
+                            <div class="col-lg-8 p-3">
+                                <h5>
+                                    <a href="/Home/Post/@post.Id" class="postHeader ml-2">@post.Name</a>
+                                </h5>
+                                <p class="postDesc ml-2">
+                                    @post.Description.Substring(0, post.Description.Length > 50 ? 50 : post.Description.Length)...
+                                </p>
+                                <div class="m-0 row">
+                                    <div class="d-inline-block">
+                                        <img class="profilePhoto" src="~/img/gallery/@settings.ProfilePhoto">
+                                    </div>
+                                    <div class="ml-2">
+                                        <p class="postAuthor">@settings.Name</p>
+                                        <p>@TimeHelper.Invoke(post.Date)</p>
+                                    </div>
+                                    <div class="readTime">
+                                        <span class="readTimeText"><i class="fa-solid fa-clock m-1" style="color: #697fea;"></i>@post.ReadingTime dk.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+                <!--Posts end-->
+            </div>
+
+
+            <!--MoreButton start-->
+            <!--MoreButton start-->
+            <div class="MoreButton">
+                <div class="loadMore p-2" id="LoadMoreDiv">
+                    <a href="javascript:void(0)" onclick="LoadMore(this)" class="loadMoreA">Daha Fazla Göster</a>
+                </div>
+            </div>
+            <!--MoreButton end-->
+            <!--MoreButton end-->
+
+        </div>
+        <!--Blog content end-->
+
+    </div>
+
+    <!--COL-LG-9 end-->
+    <!--Right Menu-->
+    @await Component.InvokeAsync("RightMenu")
+    <!--Right Menu-->
+</div>
+
+@section scripts{
+        <script>
+
+            var loadMoreDiv = document.getElementById("LoadMoreDiv");
+            var pageIndex = 2;
+
+            const LoadMore = (element) => {
+
+                if (element.innerHTML.includes(`<a href="javascript:void(0)" onclick="LoadMore(this)" class="loadMoreA">Daha Fazla Göster</a>`))
+                {
+                    toastr.info("İşlemin bitmesini bekleyiniz");
+                    return;
+                }
+
+                var urlParams = new URLSearchParams(window.location.search);
+
+                element.innerHTML = ``;
+
+                $.ajax({
+                    url: "/Home/LoadMore",
+                    type: "GET",
+                    data: {
+                        pageIndex: pageIndex
+                    },
+                    success: function (response) {
+                        setTimeout(function () {
+                            if (response.includes("nopostfounded")) {
+                                if (document.querySelector("#LoadMoreDiv") != null) {
+                                    $("#postArea").append(response);
+                                }
+                                $("#LoadMoreDiv").remove()
+                                return
+                            }
+                            element.innerHTML = `Daha Fazla Göster`;
+                        }, 500);
+
+                        $("#postsDiv").append(response);
+
+                        pageIndex++;
+                    },
+                    error: function (err) {
+                        console.error(err);
+                        element.innerHTML = `Daha Fazla Göster`;
+                    }
+                });
+            }
+        </script>
+}
+
+

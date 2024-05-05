@@ -1,0 +1,198 @@
+﻿@model PostViewModel
+@{
+    var post = Model.Blog;
+    var pageSettings = Model.PageSettings;
+}
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+@section title{
+    @post.Name.Substring(0, post.Name.Length > 20 ? 20 : post.Name.Length)... | enesbiricik.com
+}
+
+<div class="row">
+
+    <!--COL-LG-9 start-->
+    <div class="col-lg-9">
+        <!--Blog content start-->
+        <div>
+            <div class="row">
+                <!--Posts start-->
+                <div class="p-2">
+                    <div class="blogPost row pb-4 mt-5">
+                        <div class="photo col-lg-12">
+                            <img class="blogPhoto" src="~/img/gallery/@post.CoverPhoto">
+                        </div>
+                        <div class="col-lg-12 p-3">
+                            <div class="row mt-3">
+                                <div class="col-lg-6 col-md-6 col-sm-6 d-inline-block">
+                                    <a class="blogTag align-content-lg-start" href="/Home/Category/@post.CategoryId">
+                                        @post.Category.Name
+                                    </a>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="readTime">
+                                        <span class="readTimeText"><i class="fa-solid fa-clock mr-2" style="color: #697fea;margin-bottom: 0.3rem;"></i>@post.ReadingTime dk.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h5>
+                                <h4 class="postHeader ml-2 font-weight-bolder">@post.Name</h4>
+                            </h5>
+                            <p class="postDesc ml-2">
+                                @Html.Raw(post.Content)
+                            </p>
+                            <div class="m-0 row">
+                                <div class="d-inline-block">
+                                    <img class="profilePhoto" src="~/img/gallery/@pageSettings.ProfilePhoto">
+                                </div>
+                                <div class="ml-2">
+                                    <h5 class="postAuthor">@pageSettings.Name</h5>
+                                    <p>@TimeHelper.Invoke(post.Date)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--Posts end-->
+            </div>
+        </div>
+        <!--Blog content end-->
+        <!--ComentList Start-->
+
+
+        <div class="commentDiv">
+            <div class="mt-2 pt-2">
+                <h4 class="head">
+                    Yorumlar
+                </h4>
+            </div>
+
+            @if (post.Comments.Count > 0)
+            {
+                @foreach (var comment in post.Comments)
+                {
+                    <div class="blogPost row p-0 m-0" id="@comment.Id.ToString()">
+                        <div class="col-lg-12">
+                            <div class="row comment p-1 m-1">
+
+                                <div class="col-lg-11 mt-3 ml-4">
+                                    <div class="row replyHeader">
+                                        <div class="">
+                                            <img class="profilePhoto" src="~/img/gallery/profile.png">
+                                        </div>
+                                        <p class="postAuthor d-flex ml-3">@comment.AuthorName</p>
+                                        <p class="d-flex mt-3 ml-2">@TimeHelper.Invoke(comment.Date)</p>
+                                    </div>
+                                    <p class="px-3" style="word-wrap:break-word;">
+                                        @comment.CommentText
+                                    </p>
+
+                                    <div class="row reply mb-3">
+                                        <button role="button" class="replyButton" onclick="replyClick(@comment.Id.ToString())">
+                                            <i class="fa-solid fa-reply" style="color: #697fea;"></i>
+                                        </button>
+                                    </div>
+
+
+                                    <div class="replies">
+
+                                        @if (true)
+                                        {
+                                            @foreach (var replyComment in comment.Replies)
+                                            {
+
+                                                <div class="row comment p-1 m-1">
+                                                    <div class="col-lg-1 col-sm-1 col-md-1">
+                                                        <div class="vr mt-3"></div>
+                                                    </div>
+                                                    <div class="col-lg-10 col-sm-10 col-md-10 mt-3 pl-4">
+                                                        <div class="row replyHeader">
+                                                            <div class="">
+                                                                <img class="profilePhoto" src="~/img/gallery/profile.png">
+                                                            </div>
+                                                            <p class="postAuthor d-flex ml-2">@replyComment.AuthorName</p>
+                                                            <p class="d-flex mt-3 ml-2">@TimeHelper.Invoke(replyComment.Date)</p>
+                                                        </div>
+                                                        <p class="px-3" style="white-space:pre-line !important;word-wrap:break-word;">
+                                                            @replyComment.CommentText
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
+
+                                        <div class="mt-3 pt-3">
+                                            <div class="mt-1 replyDiv ">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            }
+            else
+            {
+                <p class="commentCount">No Comments Yet!</p>
+            }
+
+        </div>
+
+        <!--ComentList End-->
+        <!--CommentCreate Start-->
+
+        <div class="commentDiv mt-3">
+
+
+            <div class="mt-1 pt-1">
+                <h4 class="head">
+                    Yorum Yap
+                </h4>
+            </div>
+
+            <div>
+
+                <input type="hidden" id="SpamControl">
+                <input type="hidden" id="blogId" value="@post.Id" />
+
+                <span class="head pl-4 mt-3">AD-SOYAD</span>
+                <input type="text" placeholder="Ad Soyad" id="AuthorName" maxlength="50" class="inputS ml-3 mb-1 py-2 my-1">
+                <span class="ml-4" style="color:red;font-weight:bold;" id="AuthorNameErrorSpan"></span>
+                <br />
+
+                <span class="head pl-4 mt-3">EMAIL</span>
+                <input type="email" placeholder="Email" id="AuthorEmailAddress" class="inputS ml-3 mb-1 py-2 my-1">
+                <span class="ml-4" style="color:red;font-weight:bold;" id="AuthorEmailAddressErrorSpan"></span> <!--onKeyPress-->
+                <br />
+
+                <span class="head pl-4 mt-3">YORUM</span>
+                <textarea placeholder="Yorum" id="CommentText" rows="7" class="inputS ml-3 mb-1 my-1"></textarea>
+                <span class="ml-4" class="" style="color:red;font-weight:bold;" id="CommentTextErrorSpan"></span>
+                <br />
+
+                <div class="my-3">
+                    <input class="btnGonder m-auto p-1" type="submit" onclick="commentCreate()" value="GÖNDER">
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--CommentCreate End-->
+
+    </div>
+
+    <!--COL-LG-9 end-->
+    <!--Right Menu-->
+    @await Component.InvokeAsync("RightMenu")
+    <!--Right Menu-->

@@ -1,0 +1,64 @@
+﻿@model List<BlogListDto>
+@{
+    Layout = "";
+
+    var settings = ViewBag.Settings as PageSettingsListDto;
+}
+
+<style>
+    .mainnopost{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+</style>
+
+@if(Model.Count > 0)
+{
+    <!--Posts start-->
+    @foreach (var post in Model)
+    {
+
+        <div style="width:100% !important;">
+            <div class="blog row pb-4 mx-2">
+                <div class="photo col-lg-4" style="max-height:16rem !important">
+                    <img class="blogPhoto" src="~/img/gallery/@post.CoverPhoto">
+
+                </div>
+                <div class="col-lg-8 p-3">
+                    <h5>
+                        <a href="/Home/Post/@post.Id" class="postHeader ml-2">@post.Name</a>
+                    </h5>
+                    <p class="postDesc ml-2">
+                        @post.Description.Substring(0, post.Description.Length > 50 ? 50 : post.Description.Length)...
+                    </p>
+                    <div class="m-0 row">
+                        <div class="d-inline-block">
+                            <img class="profilePhoto" src="~/img/gallery/@settings.ProfilePhoto">
+                        </div>
+                        <div class="ml-2">
+                            <p class="postAuthor">@settings.Name</p>
+                            <p>@TimeHelper.Invoke(post.Date)</p>
+                        </div>
+                        <div class="readTime">
+                            <span class="readTimeText"><i class="fa-solid fa-clock m-1" style="color: #697fea;"></i>@post.ReadingTime m</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    <!--Posts end-->
+}
+else
+{
+    <div class="mainnopost">
+        <div class="blog py-3" id="nopostfounded" style="align-items: center;justify-content: center;">
+            <p style="font-weight:bolder;text-align:center;">Daha Fazla Gönderi Yok :(</p>
+        </div>
+    </div>
+}
+
+

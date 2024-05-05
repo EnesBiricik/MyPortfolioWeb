@@ -1,0 +1,37 @@
+﻿@model List<CategoryListDto>
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+@{
+    var random = new Random();
+}
+
+@section title {
+    Kategoriler | enesbiricik.com
+}
+
+
+<div class="commentDiv mt-3 col-lg-12">
+    <div class="row d-flex align-items-center justify-content-center">
+        @foreach (var item in Model)
+        {
+            var count = item.Blogs.Count;
+            count = count * 10 + 50; // Boyut hesabı
+
+            // Rastgele pastel renk oluştur
+            var r = random.Next(100, 200);
+            var g = random.Next(100, 200);
+            var b = random.Next(100, 200);
+
+            var color = String.Format("rgb({0}, {1}, {2})", r, g, b); // RGB formatında renk
+
+            <div class="category" style="height:@count rem; background-color:@color;">
+                <a href="/Home/Category/@item.Id"><span>@item.Name</span></a>
+            </div>
+        }
+    </div>
+</div>
+
+
+

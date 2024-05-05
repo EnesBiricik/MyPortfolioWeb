@@ -1,0 +1,139 @@
+﻿@model List<ContactListDto>
+@{
+    Layout = "../Shared/_PanelLayout.cshtml";
+}
+
+
+@section title
+    {
+    enesbiricikcom | Messages
+}
+
+@section PageHeader
+    {
+    Messages
+}
+
+
+@section links{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
+
+    <style>
+        tr, th {
+            padding: 10px;
+        }
+
+        thead {
+            color: white;
+            background-color: #4e73df;
+        }
+
+        tbody {
+            font-size: large;
+        }
+    </style>
+}
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email Address</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count > 0)
+                    {
+                        foreach (var message in Model)
+                        {
+
+                            <tr style="@(@message.IsRead ? "background-color:lightgray" : "background-color:lightgreen")">
+                                <td>@message.Name</td>
+                                <td>@message.EmailAddress</td>
+                                <td>@message.Subject</td>
+                                <td>@message.Message</td>
+                                <td>
+                                    <Button type="button" class="btn btn-danger" onclick="MessageDelete(@message.Id , this)">Sil</Button>
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <span style="display:none" class="infoAlert">You don't have a any Content !'</span>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+
+        $(document).ready(function () {
+            $('#dataTable').DataTable({
+                "order": [[0, "asc"]],
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/tr.json',
+                }
+            });
+        });
+
+        function MessageDelete(id, element) {
+            if (confirm("Are you sure delete it?")) {
+                $.ajax({
+                    url: '/Dashboard/MessageDelete',
+                    method: 'POST',
+                    data: { 'Id': id },
+                    success: function (result) {
+                        if (result == true) {
+                            element.parentElement.parentElement.remove()
+                            toastr.success("Message is Deleted")
+                        }
+                        else {
+                            toastr.error("Something went wrong ")
+                        }
+                    },
+                    error: function () {
+                        toastr.error("Something went wrong ")
+                    }
+                });
+            }
+        }
+
+        function MessageReadStatusUpdate(id, element) {
+            if (confirm("Are you sure delete it?")) {
+                $.ajax({
+                    url: '/Dashboard/MessageRead',
+                    method: 'POST',
+                    data: { 'Id': id },
+                    success: function (result) {
+                        if (result == true) {
+                            element.parentElement.parentElement.style.backgroundColor = 'lightgreen'
+                            toastr.success("Message is Deleted")
+                        }
+                        else {
+                            toastr.error("Something went wrong ")
+                        }
+                    },
+                    error: function () {
+                        toastr.error("Something went wrong ")
+                    }
+                });
+            }
+        }
+    </script>
+    }

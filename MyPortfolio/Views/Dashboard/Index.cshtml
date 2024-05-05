@@ -1,0 +1,287 @@
+﻿@model DashboardViewModel
+
+@{
+    Layout = "../Shared/_PanelLayout.cshtml";
+
+    var socialMedias = Model.SocialMediaVisitStatistic;
+    var socialMediasClickCount = Model.SocialMediaVisitStatistic?.Sum(x => x.Value);
+    var socialMediaNames = Json.Serialize(socialMedias?.Keys.ToArray());
+    var socialMediaValues = Json.Serialize(socialMedias?.Values.ToArray());
+
+
+    //visitor stats
+    var visitorStats = Model.DailyVisitors;
+    //var visitorCount = Model.DailyVisitors?.Sum(x => x.VisitorCount);
+    var visitorNames = Json.Serialize(visitorStats?.Keys.ToArray());
+    var visitorValues = Json.Serialize(visitorStats?.Values.ToArray());
+    var maxValue = Model.maxVisitorValue;
+
+    if(maxValue <100)
+        maxValue = 100;
+
+}
+
+
+@section title
+    {
+    enesbiricikcom | Index
+}
+
+@section PageHeader
+    {
+    Index
+}
+
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+
+    <!-- Content Row-->
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-12 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Total Visitor
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalVisitorCount</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-12 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Total Social Media Account Visits
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@socialMediasClickCount</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="far fa-heart fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-12 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Total Post
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalPostCount</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-12 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                               Total Project
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalProjectCount</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <div class="col-xl-8 col-lg-7">
+
+            <!-- Bar Chart -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-bar">
+                        <canvas id="myBarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Donut Chart -->
+        <div class="col-xl-4 col-lg-5">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-pie pt-4">
+                        <canvas id="myPieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+@section scripts{
+    <script>
+
+        // Set new default font family and font color to mimic Bootstrap's default styling
+        Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = '#858796';
+
+        // Pie Chart Example
+        var ctx = document.getElementById("myPieChart");
+
+        var colors = [];
+
+        for (let i = 0; i < @(Model.SocialMediaVisitStatistic?.Count); i++) {
+            colors[i] = '#' + Math.floor(Math.random() * 16777215).toString(16);
+        }
+
+        var labels = @Html.Raw(socialMediaNames);
+        var values = @socialMediaValues;
+
+
+        console.log(labels)
+
+        console.log(values)
+
+        var myPieChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: values,
+                    backgroundColor: colors,
+                }],
+            },
+            // Configuration options go here
+            options: {
+                legend: {
+                    display: true
+                },
+                animation: {
+                    easing: "easeInOutBack"
+                }
+            }
+        });
+
+
+    </script>
+
+    <script>
+        // Set new default font family and font color to mimic Bootstrap's default styling
+        Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = '#858796';
+
+
+        var labelsvisitor = @Html.Raw(visitorNames);
+        var valuesvisitor = @visitorValues;
+
+        // Bar Chart Example
+        var ctx = document.getElementById("myBarChart");
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labelsvisitor,
+                datasets: [{
+                    label: "Visitor",
+                    backgroundColor: "#697fea",
+                    hoverBackgroundColor: "#2e59d9",
+                    borderColor: "#4e73df",
+                    data: valuesvisitor,
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 25,
+                        top: 25,
+                        bottom: 0
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        time: {
+                            unit: 'month'
+                        },
+                        gridLines: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        ticks: {
+                            maxTicksLimit: 6
+                        },
+                        maxBarThickness: 25,
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            max: @maxValue,
+                            maxTicksLimit: 5,
+                            padding: 10
+                        },
+                        gridLines: {
+                            color: "rgb(234, 236, 244)",
+                            zeroLineColor: "rgb(234, 236, 244)",
+                            drawBorder: false,
+                            borderDash: [2],
+                            zeroLineBorderDash: [2]
+                        }
+                    }],
+                },
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    titleMarginBottom: 10,
+                    titleFontColor: '#6e707e',
+                    titleFontSize: 14,
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    borderColor: '#dddfeb',
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    caretPadding: 10
+                },
+            }
+        });
+    </script>
+
+}

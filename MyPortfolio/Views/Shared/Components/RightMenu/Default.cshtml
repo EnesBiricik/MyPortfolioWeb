@@ -1,0 +1,90 @@
+﻿@model RightMenuViewModel
+@{
+    var categories = Model.categories;
+    var socialMedias = Model.socialMedias;
+    var posts = Model.blogList;
+}
+
+<!--COL-LG-3 start-->
+<div class="col-lg-3">
+    <div class="my-3">
+        <h3 class="head">Sosyal Medya</h3>
+    </div>
+    <div class="rightMenuDiv">
+        <p class="soscialMediaDesc">
+            Bana sosyal medya araçlarımdan ulaşın. Size geri dönmem çok uzun sürmeyecektir.
+        </p>
+        @foreach (var account in socialMedias)
+        {
+
+            <div class="iconDiv">
+                <a onclick="ClickCountRightMenu(@account.Id)" href="@account.Link">
+                    <img src="~/img/gallery/@account.Icon" style="max-width:2rem;max-height:2rem;min-width:2rem;min-height:2rem;">
+                </a>
+            </div>
+        }
+
+    </div>
+
+    <div class="my-3">
+        <h3 class="head">Kategoriler</h3>
+    </div>
+    <div class="rightMenuDiv" style="height: auto;">
+        @foreach (var category in categories)
+        {
+            <div class="categoryDiv">
+                <a href="/Home/Category/@category.Id">
+                    <p>@category.Name</p>
+                </a>
+            </div>
+        }
+
+        <div class="center-content mt-4">
+            <span class="mb-0">Daha Fazla Kategori</span>
+            <a href="/Home/Categories">
+                <i class="fa-solid fa-circle-chevron-down fa-2xl btnGonder mb-1" style="color: #697fea; background: none;"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="my-3">
+        <h3 class="head">Öne Çıkanlar</h3>
+    </div>
+    <div class="rightMenuDiv">
+
+        @if (posts.Count>0)
+        {
+            foreach (var post in @posts)
+            {
+
+                <div class="categoryDiv blogPopularDiv py-3 px-2">
+                    <a class="" href="/Home/Post/@post.Id">@post.Name</a>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No Featured posts yet!</p>
+        }
+
+    </div>
+</div>
+    </div>
+<!--COL-LG-3 end-->
+<script>
+    function ClickCountRightMenu(id) {
+        if (id > 0) {
+            fetch('/Home/SocialMediaClickCount', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(id)
+            })
+                .catch(error => {
+                    console.error(error);
+                });
+
+        }
+    }
+</script>

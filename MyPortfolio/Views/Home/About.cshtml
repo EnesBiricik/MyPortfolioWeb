@@ -1,0 +1,31 @@
+﻿@model PageSettingsListDto
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+@section title {
+    Hakkımda | enesbiricik.com
+}
+
+
+<div class="commentDiv mt-3">
+    <div>
+        <div class="container hero m-auto">
+            <div class="row p-1 align-content-center justify-content-center align-items-center">
+                <div class="col-lg-8 mb-3">
+                    <h1 class="soscialMediaDesc">
+                        Merhaba, Ben <b class="authorName">@Model.Name</b>.
+                        <br>Yazılım Geliştiricisi
+                    </h1>
+                </div>
+                <div class="col-lg-3 d-flex align-items-center justify-content-center">
+                    <div class="img-box mr-3">
+                        <img class="img-hero" src="~/img/gallery/@Model.ProfilePhoto">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Desc pt-0 mt-0">
+            <p>@Model.AboutDescription</p>
+        </div>
+    </div>
