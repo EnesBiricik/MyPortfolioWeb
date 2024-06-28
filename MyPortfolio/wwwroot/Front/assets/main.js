@@ -172,6 +172,7 @@ function commentCreate() {
     } else {
         AuthorNameValidation.innerHTML = "";
     }
+
     console.log(AuthorName)
     if (AuthorName.value.length > 51) {
         AuthorNameValidation.innerHTML = "Please Enter at least 50 character Name";

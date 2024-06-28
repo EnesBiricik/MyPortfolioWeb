@@ -60,6 +60,7 @@ namespace MyPortfolio.BAL.Services
                 return new Response<Contact>(ResponseType.NotFound, $"{Id} ye sahip veri bulunamadı!");
 
             _uow.GetRepository<Contact>().Remove(data);
+            await _uow.SaveChanges();
 
             return new Response(ResponseType.Success);
         }

@@ -22,7 +22,7 @@ namespace MyPortfolio.Web.ViewComponents
         {
             var categories = await _categoryService.GetAllAsync();
             var socialMedias = await _socialMediaService.GetAllAsync();
-            var posts = await _blogService.GetAllAsync(true);
+            var posts = await _blogService.GetAllAsyncForBlogs(true);
 
             var model = new RightMenuViewModel()
             {

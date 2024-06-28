@@ -8,6 +8,7 @@ using MyPortfolio.Web.Models;
 using MyPortfolio.Web.ViewModel;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using Microsoft.Extensions.Primitives;
 
 namespace MyPortfolio.Controllers
 {
@@ -37,7 +38,7 @@ namespace MyPortfolio.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var blogs = await _blogService.GetAllAsync(false);
+            var blogs = await _blogService.GetAllAsyncForBlogs();
             var projects = await _projectService.GetAllAsync();
             var pageSettings = await _pageSettingsService.Get<PageSettingsListDto>();
 
@@ -62,15 +63,34 @@ namespace MyPortfolio.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Contact(ContactCreateDto dto)
+        public async Task<IActionResult> Contact(ContactCreateModel model)
         {
+
+            var form = Request.Form;
+            Request.Form.TryGetValue("g-recaptcha-response", out StringValues value);
+
+            if (string.IsNullOrEmpty(value))
+            {
+                ModelState.AddModelError("reCaptcha", "Google Doğrulama İşlemi Gerçekleşmedi");
+                return View(model);
+            }
+
+            var dto = new ContactCreateDto
+            {
+                EmailAddress = model.EmailAddress,
+                IsRead = model.IsRead,
+                Message = model.Message,
+                Name = model.Name,
+                Subject = model.Subject
+            };
+
             var result = await _contactService.CreateAsync(dto);
             if (result.ResponseType == ResponseType.Success)
             {
-                TempData["alerts"] = this.ViewAlert(AlertType.Success, "Your message is sent");
+                TempData["alerts"] = this.ViewAlert(AlertType.Success, "Mesajınız Gönderildi.");
                 return RedirectToAction("Index");
             }
-            TempData["alerts"] = this.ViewAlert(AlertType.Error, "Action is failed");
+            TempData["alerts"] = this.ViewAlert(AlertType.Error, "İşlem Başarısız.");
             return this.ResponseRedirectAction<ContactCreateDto>(result, "Contact");
         }
 
@@ -102,7 +122,7 @@ namespace MyPortfolio.Controllers
 
             ViewBag.Settings = settings.Data;
 
-            var posts = await _blogService.GetAllAsyncForBlogs();
+            var posts = await _blogService.GetAllAsyncForBlogs(false);
             return View(posts.Data);
         }
 

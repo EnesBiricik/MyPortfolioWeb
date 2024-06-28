@@ -6,7 +6,7 @@ namespace MyPortfolio.Web.ViewModel
     {
         public PageSettingsListDto PageSettings { get; set; }
         public List<ProjectListDto>? Projects { get; set; }
-        public List<BlogListDto> Blogs { get; set; }
+        public List<BlogListDtoForBlogs> Blogs { get; set; }
 
 
     }

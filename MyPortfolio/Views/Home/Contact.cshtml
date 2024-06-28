@@ -1,4 +1,4 @@
-﻿@model ContactCreateDto
+﻿@model ContactCreateModel
 @{
     Layout = "../Shared/_Layout.cshtml";
 }
@@ -8,9 +8,17 @@
     İletişim | enesbiricik.com
 }
 
+@section links {
+    <style>
+        .inputS {
+            width: 100% !important
+        }
+    </style
+}
 
 
-<div class="commentDiv mt-3">
+
+<div class="commentDiv mt-3 p-3">
     <div class="m-3">
         <h4 class="head">
             Benimle İletişime Geç
@@ -18,36 +26,43 @@
     </div>
     <div>
         <form asp-action="Contact" method="post" asp-controller="Home">
-                <input type="hidden" name="SpamControl">
+            @* <input type="hidden" id="SpamControl"> *@
 
-            <div class="form-group">
-                <input asp-for="@Model.Name" type="text" placeholder="Ad Soyad" class="inputS mx-2 py-3 my-1 px-3">
+            <div class="form-group px-1">
+                <input asp-for="@Model.Name" type="text" id="AuthorName" placeholder="Ad Soyad" class="inputS">
                 <br />
-                <span class="px-4" style="color:red;font-weight:bold;" asp-validation-for="@Model.Name"></span>
+                <span class="px-4" id="AuthorNameErrorSpan" style="color:red;font-weight:bold;" asp-validation-for="@Model.Name"></span>
             </div>
 
-            <div class="form-group">
-                <input asp-for="@Model.EmailAddress" type="email" placeholder="Email" class="inputS mx-2 py-3 my-1 px-3">
+            <div class="form-group px-1">
+                <input asp-for="@Model.EmailAddress" type="email" id="AuthorEmailAddress" placeholder="Email" class="inputS">
                 <br />
-                <span class="px-4" style="color:red;font-weight:bold;" asp-validation-for="@Model.EmailAddress"></span>
+                <span class="px-4" id="AuthorEmailAddressErrorSpan" style="color:red;font-weight:bold;" asp-validation-for="@Model.EmailAddress"></span>
             </div>
 
-            <div class="form-group">
-                <input asp-for="@Model.Subject" type="text" placeholder="Konu" class="inputS mx-2 py-3 my-1 px-3">
+            <div class="form-group px-1">
+                <input asp-for="@Model.Subject" type="text" id="Subject" placeholder="Konu" class="inputS">
                 <br />
-                <span class="px-4" style="color:red;font-weight:bold;" asp-validation-for="@Model.Subject"></span>
+                <span class="px-4" id="SubjectTextErrorSpan" style="color:red;font-weight:bold;" asp-validation-for="@Model.Subject"></span>
             </div>
 
-            <div class="form-group">
-                <textarea asp-for="@Model.Message" placeholder="Mesaj" rows="7" style="min-height: 6rem;" class="inputS mx-2 py-3 my-1 px-3"></textarea>
+            <div class="form-group px-1">
+                <textarea asp-for="@Model.Message" placeholder="Mesaj" id="Message" rows="7" style="min-height: 6rem;" class="inputS"></textarea>
                 <br />
-                <span class="px-4" style="color:red;font-weight:bold;" asp-validation-for="@Model.Message"></span>
+                <span class="px-4" id="MessageTextErrorSpan" style="color:red;font-weight:bold;" asp-validation-for="@Model.Message"></span>
             </div>
 
+            <div class="form-group px-1 mb-1" style="display:grid;align-items:center;justify-content:center;">
+                <div class="g-recaptcha" data-sitekey="6LcRAgIqAAAAAF0_d5Rc5GNscwqpvQ2nDBjPuQGy"></div>
+                <br />
+                <span style="color:red;font-weight:bold;" asp-validation-for="@Model.reCaptcha"></span>
+            </div>
             <div class="my-3">
                 <input class="btnGonder m-auto p-1" type="submit" name="" id="" value="GÖNDER">
             </div>
         </form>
+        
     </div>
 </div>
+
 

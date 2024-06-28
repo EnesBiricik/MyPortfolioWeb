@@ -1,4 +1,4 @@
-﻿@model List<BlogListDto>
+﻿@model List<BlogListDtoForBlogs>
 @{
     Layout = "";
 
@@ -22,8 +22,8 @@
 
         <div style="width:100% !important;">
             <div class="blog row pb-4 mx-2">
-                <div class="photo col-lg-4" style="max-height:16rem !important">
-                    <img class="blogPhoto" src="~/img/gallery/@post.CoverPhoto">
+                <div class="photo col-lg-4">
+                    <img class="blogPhoto" src="~/img/gallery/@post.CoverPhoto" loading="lazy">
 
                 </div>
                 <div class="col-lg-8 p-3">
@@ -31,7 +31,7 @@
                         <a href="/Home/Post/@post.Id" class="postHeader ml-2">@post.Name</a>
                     </h5>
                     <p class="postDesc ml-2">
-                        @post.Description.Substring(0, post.Description.Length > 50 ? 50 : post.Description.Length)...
+                        @post.Description ...
                     </p>
                     <div class="m-0 row">
                         <div class="d-inline-block">

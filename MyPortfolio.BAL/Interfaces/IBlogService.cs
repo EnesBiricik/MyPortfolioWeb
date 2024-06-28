@@ -14,9 +14,9 @@ namespace MyPortfolio.BAL.Interfaces
         Task<IResponse> RemoveAsync(int Id);
         Task<IResponse<BlogUpdateDto>> UpdateAsync(BlogUpdateDto dto, IFormFile? IconFile);
         Task<IResponse> FeatureStatusUpdate(int Id);
-        Task<IResponse<List<BlogListDto>>> GetAllByCategoryIdAsync(int id);
-        Task<IResponse<List<BlogListDto>>> LoadMore(int pageIndex);
-        Task<IResponse<List<BlogListDto>>> GetAllAsyncForBlogs();
+        Task<IResponse<List<BlogListDtoForBlogs>>> GetAllByCategoryIdAsync(int id);
+        Task<IResponse<List<BlogListDtoForBlogs>>> LoadMore(int pageIndex);
+        Task<IResponse<List<BlogListDtoForBlogs>>> GetAllAsyncForBlogs(bool isF = false);
 
     }
 }

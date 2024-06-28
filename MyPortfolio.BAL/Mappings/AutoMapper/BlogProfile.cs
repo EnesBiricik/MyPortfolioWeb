@@ -11,6 +11,7 @@ namespace MyPortfolio.BAL.Mappings.AutoMapper
             CreateMap<BlogUpdateDto, Blog>().ReverseMap();
             CreateMap<BlogCreateDto, Blog>().ReverseMap();
             CreateMap<BlogListDto, Blog>().ReverseMap();
+            CreateMap<BlogListDtoForBlogs, Blog>().ReverseMap();
         }
 
     }

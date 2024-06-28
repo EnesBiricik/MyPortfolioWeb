@@ -54,15 +54,51 @@ namespace MyPortfolio.BAL.Services
             return new Response<List<BlogListDto>>(ResponseType.Success, dto);
         }
 
-        public async Task<IResponse<List<BlogListDto>>> GetAllAsyncForBlogs()
+        public async Task<IResponse<List<BlogListDtoForBlogs>>> GetAllAsyncForBlogs(bool isF= false)
         {
-            var data = await _uow.GetRepository<Blog>().GetQuery().OrderByDescending(x => x.Date).Include(x => x.Category).Take(10).ToListAsync();
+            var data = isF == false ? await _uow.GetRepository<Blog>()
+                                 .GetQuery()
+                                 .OrderByDescending(x => x.Date)
+                                 .Include(x => x.Category)
+                                 .Select(x => new BlogListDtoForBlogs
+                                 {
+                                     Id = x.Id,
+                                     Name = x.Name,
+                                     Category = x.Category,
+                                     CategoryId = x.CategoryId,
+                                     Description = x.Description.Length > 50 ? x.Description.Substring(0, 50) : x.Description,
+                                     CoverPhoto = x.CoverPhoto,
+                                     Date = x.Date,
+                                     ReadingTime = x.ReadingTime,
+                                     IsFeatured = x.IsFeatured
+                                 })
+                                 .Take(10)
+                                 .ToListAsync()
+                            : await _uow.GetRepository<Blog>()
+                                 .GetQuery()
+                                 .OrderByDescending(x => x.Date)
+                                 .Include(x => x.Category)
+                                 .Where(x=> x.IsFeatured == true)
+                                 .Select(x => new BlogListDtoForBlogs
+                                 {
+                                     Id = x.Id,
+                                     Name = x.Name,
+                                     Category = x.Category,
+                                     CategoryId = x.CategoryId,
+                                     Description = x.Description.Length > 50 ? x.Description.Substring(0, 50) : x.Description,
+                                     CoverPhoto = x.CoverPhoto,
+                                     Date = x.Date,
+                                     ReadingTime = x.ReadingTime,
+                                     IsFeatured = x.IsFeatured
+                                 })
+                                 .Take(10)
+                                 .ToListAsync();
 
-            var dto = _mapper.Map<List<BlogListDto>>(data);
-            return new Response<List<BlogListDto>>(ResponseType.Success, dto);
+            var dto = _mapper.Map<List<BlogListDtoForBlogs>>(data);
+            return new Response<List<BlogListDtoForBlogs>>(ResponseType.Success, dto);
         }
 
-        public async Task<IResponse<List<BlogListDto>>> LoadMore(int pageIndex)
+        public async Task<IResponse<List<BlogListDtoForBlogs>>> LoadMore(int pageIndex)
         {
             var pageSize = 10;
 
@@ -71,19 +107,47 @@ namespace MyPortfolio.BAL.Services
                 .Skip((pageIndex - 1) * pageSize)
                 .Include(x => x.Category)
                 .Take(pageSize)
+                .Select(x => new BlogListDtoForBlogs
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Category = x.Category,
+                    CategoryId = x.CategoryId,
+                    Description = x.Description.Length > 50 ? x.Description.Substring(0, 50) : x.Description,
+                    CoverPhoto = x.CoverPhoto,
+                    Date = x.Date,
+                    ReadingTime = x.ReadingTime,
+                    IsFeatured = x.IsFeatured
+                })
                 .ToListAsync();
 
-            var dto = _mapper.Map<List<BlogListDto>>(data);
-            return new Response<List<BlogListDto>>(ResponseType.Success, dto);
+            var dto = _mapper.Map<List<BlogListDtoForBlogs>>(data);
+            return new Response<List<BlogListDtoForBlogs>>(ResponseType.Success, dto);
         }
 
 
-        public async Task<IResponse<List<BlogListDto>>> GetAllByCategoryIdAsync(int id)
+        public async Task<IResponse<List<BlogListDtoForBlogs>>> GetAllByCategoryIdAsync(int id)
         {
-           var data = await _uow.GetRepository<Blog>().GetQuery().Include(x => x.Category).Where(x=> x.CategoryId == id).ToListAsync();
+           var data = await _uow.GetRepository<Blog>()
+                                .GetQuery()
+                                .Include(x => x.Category)
+                                .Where(x=> x.CategoryId == id)
+                                .Select(x => new BlogListDtoForBlogs
+                                {
+                                    Id = x.Id,
+                                    Name = x.Name,
+                                    Category = x.Category,
+                                    CategoryId = x.CategoryId,
+                                    Description = x.Description.Length > 50 ? x.Description.Substring(0, 50) : x.Description,
+                                    CoverPhoto = x.CoverPhoto,
+                                    Date = x.Date,
+                                    ReadingTime = x.ReadingTime,
+                                    IsFeatured = x.IsFeatured
+                                })
+                                .ToListAsync();
 
-            var dto = _mapper.Map<List<BlogListDto>>(data);
-            return new Response<List<BlogListDto>>(ResponseType.Success, dto);
+            var dto = _mapper.Map<List<BlogListDtoForBlogs>>(data);
+            return new Response<List<BlogListDtoForBlogs>>(ResponseType.Success, dto);
         }
 
         public async Task<IResponse<IDto>> GetByIdAsync<IDto>(int Id)
