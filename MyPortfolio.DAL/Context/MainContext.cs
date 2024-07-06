@@ -44,7 +44,7 @@ namespace MyPortfolio.DAL.Context
             //        "TrustServerCertificate = True;",
             //        o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
 
-            optionsBuilder.UseSqlServer("",
+            optionsBuilder.UseSqlServer("Data Source=94.73.170.33;Initial Catalog=u1771804_db95A; User Id=u1771804_user95A;Password=u==fc78QvX::74NU;",
                     o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
 
             base.OnConfiguring(optionsBuilder);

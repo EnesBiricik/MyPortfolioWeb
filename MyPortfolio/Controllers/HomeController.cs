@@ -45,7 +45,7 @@ namespace MyPortfolio.Controllers
             var model = new HomeViewModel()
             {
                 Blogs = blogs.Data.Take(5).ToList(),
-                Projects = projects.Data,
+                Projects = projects.Data.Take(3).ToList(),
                 PageSettings = pageSettings.Data
             };
             return View(model);

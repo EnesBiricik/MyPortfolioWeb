@@ -3,32 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CC8EF24E-3ED1-4AC8-A928-73465B4380C3}|MyPortfolio.DAL\\MyPortfolio.DAL.csproj|c:\\users\\enes\\documents\\projectman\\codecodetime\\myportfolio\\myportfolio.dal\\context\\maincontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC8EF24E-3ED1-4AC8-A928-73465B4380C3}|MyPortfolio.DAL\\MyPortfolio.DAL.csproj|solutionrelative:myportfolio.dal\\context\\maincontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89B82192-437A-4351-8530-82E4C32C0AA2}|MyPortfolio\\MyPortfolio.Web.csproj|c:\\users\\enes\\documents\\projectman\\codecodetime\\myportfolio\\myportfolio\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{89B82192-437A-4351-8530-82E4C32C0AA2}|MyPortfolio\\MyPortfolio.Web.csproj|solutionrelative:myportfolio\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89B82192-437A-4351-8530-82E4C32C0AA2}|MyPortfolio\\MyPortfolio.Web.csproj|c:\\users\\enes\\documents\\projectman\\codecodetime\\myportfolio\\myportfolio\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{89B82192-437A-4351-8530-82E4C32C0AA2}|MyPortfolio\\MyPortfolio.Web.csproj|solutionrelative:myportfolio\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{33D539A3-EB37-4217-BE08-6CA24063F313}|MyPortfolio.BAL\\MyPortfolio.BAL.csproj|c:\\users\\enes\\documents\\projectman\\codecodetime\\myportfolio\\myportfolio.bal\\services\\contactservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{33D539A3-EB37-4217-BE08-6CA24063F313}|MyPortfolio.BAL\\MyPortfolio.BAL.csproj|solutionrelative:myportfolio.bal\\services\\contactservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89B82192-437A-4351-8530-82E4C32C0AA2}|MyPortfolio\\MyPortfolio.Web.csproj|c:\\users\\enes\\documents\\projectman\\codecodetime\\myportfolio\\myportfolio\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89B82192-437A-4351-8530-82E4C32C0AA2}|MyPortfolio\\MyPortfolio.Web.csproj|solutionrelative:myportfolio\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89B82192-437A-4351-8530-82E4C32C0AA2}|MyPortfolio\\MyPortfolio.Web.csproj|c:\\users\\enes\\documents\\projectman\\codecodetime\\myportfolio\\myportfolio\\views\\dashboard\\messages.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{89B82192-437A-4351-8530-82E4C32C0AA2}|MyPortfolio\\MyPortfolio.Web.csproj|solutionrelative:myportfolio\\views\\dashboard\\messages.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{89B82192-437A-4351-8530-82E4C32C0AA2}|MyPortfolio\\MyPortfolio.Web.csproj|c:\\users\\enes\\documents\\projectman\\codecodetime\\myportfolio\\myportfolio\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89B82192-437A-4351-8530-82E4C32C0AA2}|MyPortfolio\\MyPortfolio.Web.csproj|solutionrelative:myportfolio\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89B82192-437A-4351-8530-82E4C32C0AA2}|MyPortfolio\\MyPortfolio.Web.csproj|c:\\users\\enes\\documents\\projectman\\codecodetime\\myportfolio\\myportfolio\\wwwroot\\front\\assets\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{89B82192-437A-4351-8530-82E4C32C0AA2}|MyPortfolio\\MyPortfolio.Web.csproj|solutionrelative:myportfolio\\wwwroot\\front\\assets\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,89 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainContext.cs",
-              "DocumentMoniker": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio.DAL\\Context\\MainContext.cs",
-              "RelativeDocumentMoniker": "MyPortfolio.DAL\\Context\\MainContext.cs",
-              "ToolTip": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio.DAL\\Context\\MainContext.cs",
-              "RelativeToolTip": "MyPortfolio.DAL\\Context\\MainContext.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAkwC4AAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-28T22:30:43.844Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio\\appsettings.json",
-              "RelativeDocumentMoniker": "MyPortfolio\\appsettings.json",
-              "ToolTip": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio\\appsettings.json",
-              "RelativeToolTip": "MyPortfolio\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-06-28T22:25:42.983Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ContactService.cs",
-              "DocumentMoniker": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio.BAL\\Services\\ContactService.cs",
-              "RelativeDocumentMoniker": "MyPortfolio.BAL\\Services\\ContactService.cs",
-              "ToolTip": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio.BAL\\Services\\ContactService.cs",
-              "RelativeToolTip": "MyPortfolio.BAL\\Services\\ContactService.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAmwCMAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-28T22:12:46.784Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DashboardController.cs",
-              "DocumentMoniker": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio\\Controllers\\DashboardController.cs",
-              "RelativeDocumentMoniker": "MyPortfolio\\Controllers\\DashboardController.cs",
-              "ToolTip": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio\\Controllers\\DashboardController.cs",
-              "RelativeToolTip": "MyPortfolio\\Controllers\\DashboardController.cs",
-              "ViewState": "AQIAADYBAAAAAAAAAAAowNkBAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-28T22:12:26.954Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Messages.cshtml",
-              "DocumentMoniker": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio\\Views\\Dashboard\\Messages.cshtml",
-              "RelativeDocumentMoniker": "MyPortfolio\\Views\\Dashboard\\Messages.cshtml",
-              "ToolTip": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio\\Views\\Dashboard\\Messages.cshtml",
-              "RelativeToolTip": "MyPortfolio\\Views\\Dashboard\\Messages.cshtml",
-              "ViewState": "AQIAAFEAAAAAAAAAAAAAAEAAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-28T22:12:10.744Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "MyPortfolio\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio\\Controllers\\HomeController.cs",
               "RelativeToolTip": "MyPortfolio\\Controllers\\HomeController.cs",
-              "ViewState": "AQIAACoAAAAAAAAAAAAowEwAAAAAAAAA",
+              "ViewState": "AQIAABkAAAAAAAAAAAA1wCgAAABBAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-26T14:43:57.557Z"
+              "WhenOpened": "2024-07-06T08:42:43.518Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Contact.cshtml",
-              "DocumentMoniker": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio\\Views\\Home\\Contact.cshtml",
-              "RelativeDocumentMoniker": "MyPortfolio\\Views\\Home\\Contact.cshtml",
-              "ToolTip": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio\\Views\\Home\\Contact.cshtml",
-              "RelativeToolTip": "MyPortfolio\\Views\\Home\\Contact.cshtml",
-              "ViewState": "AQIAACQAAAAAAAAAAAAAADcAAABnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-26T14:19:59.544Z",
+              "DocumentIndex": 1,
+              "Title": "style.css",
+              "DocumentMoniker": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio\\wwwroot\\Front\\assets\\style.css",
+              "RelativeDocumentMoniker": "MyPortfolio\\wwwroot\\Front\\assets\\style.css",
+              "ToolTip": "C:\\Users\\Enes\\Documents\\ProjectMan\\CodeCodeTime\\MyPortfolio\\MyPortfolio\\wwwroot\\Front\\assets\\style.css",
+              "RelativeToolTip": "MyPortfolio\\wwwroot\\Front\\assets\\style.css",
+              "ViewState": "AQIAALECAAAAAAAAAAAAAOICAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-28T22:56:53.299Z",
               "EditorCaption": ""
             }
           ]
