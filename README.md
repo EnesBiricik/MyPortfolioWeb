@@ -31,4 +31,4 @@ Here are the key features and highlights of the project (without CRUD):
 - 
 - General (`"Social Medias, Tech, Projects, General Settings, Categories, Blogs, Comment&Replies..."`)
 
-For a live demo, click [here](https://enesbiricik.com).
+For a live demo, click [here](https://enesbiricik.com.tr).
